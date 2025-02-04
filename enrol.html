@@ -9,14 +9,16 @@
 
         // Cap fee at ₦2000 (200000 kobo) for local transactions
         $platformFee = min($platformFee, 2000);
+        $localizedPlatformFee = format_float($platformFee, 2, true);
 
         $totalCost = $cost + $platformFee;
+        $localizedTotalCost = format_float($totalCost, 2, true);
     ?>
     <h3><?php echo $instancename; ?></h3>
     <p><?php echo $message; ?></p>
     <p><?php echo get_string("cost").": {$instance->currency} {$localisedcost}"; ?></p>
-    <p>Paystack Fee: <?php echo "{$instance->currency} {$platformFee}"; ?></p>
-    <p><b>Total: <?php echo "{$instance->currency} {$cost + $platformFee}"; ?></b></p>
+    <p>Paystack Fee: <?php echo "{$instance->currency} {$localizedPlatformFee}"; ?></p>
+    <p><b>Total: <?php echo "{$instance->currency} {$localizedTotalCost}"; ?></b></p>
     <div>
         <?php            
             $data = [
