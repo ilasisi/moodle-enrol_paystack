@@ -14,9 +14,9 @@
     ?>
     <h3><?php echo $instancename; ?></h3>
     <p><?php echo $message; ?></p>
-    <p><b><?php echo get_string("cost").": {$instance->currency} {$localisedcost}"; ?></b></p>
-    <p><b>Paystack Fee:<?php echo {$instance->currency} {$platformFee}"; ?></b></p>
-    <p><b>Total:<?php echo {$instance->currency} {$cost + $platformFee}"; ?></b></p>
+    <p><?php echo get_string("cost").": {$instance->currency} {$localisedcost}"; ?></p>
+    <p>Paystack Fee: <?php echo "{$instance->currency} {$platformFee}"; ?></p>
+    <p><b>Total: <?php echo "{$instance->currency} {$cost + $platformFee}"; ?></b></p>
     <div>
         <?php            
             $data = [
