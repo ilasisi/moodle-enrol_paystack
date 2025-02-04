@@ -4,6 +4,7 @@
     <p><b><?php echo get_string("cost").": {$instance->currency} {$localisedcost}"; ?></b></p>
     <div>
         <?php
+            $totalCost = $cost + 10000;
             $data = [
                 "cmd" => "_xclick",
                 "charset" => "utf-8",
@@ -15,7 +16,7 @@
                 "os0" => s($userfullname),
                 "custom" => "{$USER->id}-{$course->id}-{$instance->id}",
                 "currency_code" => $instance->currency,
-                "amount" => $cost,
+                "amount" => $totalCost,
                 "for_auction" => "false",
                 "no_note" => "1",
                 "no_shipping" => "1" ,
@@ -43,7 +44,7 @@
                 data-lastname="<?php echo s($userlastname) ?>"
                 data-email="<?php p($useremail) ?>"
                 data-currency="<?php p($instance->currency) ?>" 
-                data-amount="<?php p($cost * 100) ?>"
+                data-amount="<?php p($totalCost * 100) ?>"
                 data-metadata='<?php echo json_encode($data) ?>' 
                 data-locale="<?php echo current_language(); ?>">
             </script>
