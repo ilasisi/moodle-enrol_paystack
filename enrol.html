@@ -4,7 +4,22 @@
     <p><b><?php echo get_string("cost").": {$instance->currency} {$localisedcost}"; ?></b></p>
     <div>
         <?php
-            $totalCost = $cost + 10000;
+            // Convert kobo to Naira for fee calculation
+            $costInNaira = $cost / 100;
+            
+            // Calculate platform fee based on Paystack's fee structure
+            $platformFee = ($costInNaira * 0.015 + 100) * 100; // 1.5% + NGN 100 (in kobo)
+            
+            // Waive ₦100 fee for transactions under ₦2500
+            if ($costInNaira < 2500) {
+                $platformFee = ($costInNaira * 0.015) * 100;
+            }
+            
+            // Cap fee at ₦2000 (200000 kobo) for local transactions
+            $platformFee = min($platformFee, 200000);
+            
+            $totalCost = $cost + $platformFee;
+            
             $data = [
                 "cmd" => "_xclick",
                 "charset" => "utf-8",
